@@ -77,14 +77,6 @@
  /usr/share/arduino/hardware/arduino/cores/arduino/USBAPI.h \
  /usr/share/arduino/hardware/arduino/cores/arduino/USBDesc.h
 .build/nano328/arduino/WMath.d .build/nano328/arduino/WMath.o: /usr/share/arduino/hardware/arduino/cores/arduino/WMath.cpp
-.build/nano328/arduino/avr-libc/realloc.d .build/nano328/arduino/avr-libc/realloc.o: \
- /usr/share/arduino/hardware/arduino/cores/arduino/avr-libc/realloc.c \
- /usr/share/arduino/hardware/arduino/cores/arduino/avr-libc/sectionname.h \
- /usr/share/arduino/hardware/arduino/cores/arduino/avr-libc/stdlib_private.h
-.build/nano328/arduino/avr-libc/malloc.d .build/nano328/arduino/avr-libc/malloc.o: \
- /usr/share/arduino/hardware/arduino/cores/arduino/avr-libc/malloc.c \
- /usr/share/arduino/hardware/arduino/cores/arduino/avr-libc/sectionname.h \
- /usr/share/arduino/hardware/arduino/cores/arduino/avr-libc/stdlib_private.h
 .build/nano328/arduino/USBCore.d .build/nano328/arduino/USBCore.o: /usr/share/arduino/hardware/arduino/cores/arduino/USBCore.cpp \
  /usr/share/arduino/hardware/arduino/cores/arduino/Platform.h \
  /usr/share/arduino/hardware/arduino/cores/arduino/Arduino.h \
