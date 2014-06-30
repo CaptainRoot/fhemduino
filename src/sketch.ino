@@ -269,9 +269,7 @@ void HandleCommand(String cmd)
   // Version Information
   if (cmd.equals("V"))
   {
-    Serial.print("V ")
-    Serial.print(PROGVERS);
-    Serial.println(F(" FHEMduino - compiled at " __DATE__ " " __TIME__));
+    Serial.println(F("V " PROGVERS " FHEMduino - compiled at " __DATE__ " " __TIME__));
   }
   // Print free Memory
   else if (cmd.equals("R")) {
