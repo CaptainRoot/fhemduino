@@ -35,7 +35,7 @@
 
 // --- Configuration ---------------------------------------------------------
 #define PROGNAME               "FHEMduino"
-#define PROGVERS               "V2.1a-201406291545"
+#define PROGVERS               "2.1a-201406301150"
 
 #if defined(__AVR_ATmega32U4__)          //on the leonardo and other ATmega32U4 devices interrupt 0 is on dpin 3
 #define PIN_RECEIVE            3
@@ -269,6 +269,7 @@ void HandleCommand(String cmd)
   // Version Information
   if (cmd.equals("V"))
   {
+    Serial.print("V ")
     Serial.print(PROGVERS);
     Serial.println(F(" FHEMduino - compiled at " __DATE__ " " __TIME__));
   }
@@ -317,7 +318,7 @@ void HandleCommand(String cmd)
   // Print Available Commands
   else if (cmd.equals("?"))
   {
-    Serial.println(F("? Use one of V is R q"));
+    Serial.println(F("? Use one of V is R XQ"));
   }
   cmdstring = "";
 }
