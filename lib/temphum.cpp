@@ -1,7 +1,7 @@
 /*-----------------------------------------------------------------------------------------------
 /* Devices with temperatur / humidity functionality
 -----------------------------------------------------------------------------------------------*/
-
+ 
 #include "temphum.h"
 
 extern String cmdstring;
@@ -151,6 +151,51 @@ bool receiveProtocolNC_WS(unsigned int changeCount) {
 }
 #endif
 
+
+#ifdef COMP_PEARLNC
+/*
+ * PEARL NC-7200
+ */
+bool receiveProtocolPEARLNC(unsigned int changeCount) {
+#define PEARL_SYNC   8640
+#define PEARL_ONE    4084
+#define PEARL_ZERO   2016
+#define PEARL_GLITCH  460
+#define PEARL_MESSAGELENGTH 36
+
+  if (changeCount < PEARL_MESSAGELENGTH * 2) {
+    return false;
+  }
+  if ((timings[0] < PEARL_SYNC - PEARL_GLITCH) || (timings[0] > PEARL_SYNC + PEARL_GLITCH)) {
+    return false;
+  }
+
+#ifdef DEBUG
+  bool bitmessage[PEARL_MESSAGELENGTH];
+  if (GetBitStream(timings, bitmessage, PEARL_MESSAGELENGTH * 2, PEARL_ZERO - PEARL_GLITCH, PEARL_ZERO + PEARL_GLITCH, PEARL_ONE - PEARL_GLITCH, PEARL_ONE + PEARL_GLITCH) == false) {
+      return false;
+  }
+#endif
+  String rawcode;
+  rawcode = RawMessage(timings, PEARL_MESSAGELENGTH, PEARL_ZERO - PEARL_GLITCH, PEARL_ZERO + PEARL_GLITCH, PEARL_ONE - PEARL_GLITCH, PEARL_ONE + PEARL_GLITCH);
+  if (rawcode == "") {
+      return false;
+  }
+
+  // First 4 bits always 1001 == 9
+  if (rawcode[0] != '9') {
+    return false;
+  }
+
+  message = "W03";
+  message += rawcode;
+  available = true;
+  return true;
+
+}
+#endif
+
+
 #ifdef COMP_LIFETEC
 /*
  * LIFETEC
@@ -170,7 +215,7 @@ bool receiveProtocolLIFETEC(unsigned int changeCount) {
   }
 
 #ifdef DEBUG
-  bool bitmessage[TX_MESSAGELENGTH];
+  bool bitmessage[LIFE_MESSAGELENGTH];
   if (GetBitStream(timings, bitmessage, LIFE_MESSAGELENGTH * 2, LIFE_ZERO - LIFE_GLITCH, LIFE_ZERO + LIFE_GLITCH, LIFE_ONE - LIFE_GLITCH, LIFE_ONE + LIFE_GLITCH) == false) {
       return false;
   }

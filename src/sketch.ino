@@ -40,10 +40,12 @@
 // 2014-08-05 - Added temperature sensor AURIOL (Lidl Version: 09/2013)
 // 2014-08-06 - Implemented uptime
 // 2014-08-08 - Started outsourcing of devices in modules
+// 2014-08-10 - add support for pearl NC7200
+
 
 // --- Configuration ---------------------------------------------------------
 #define PROGNAME               "FHEMduino"
-#define PROGVERS               "2.2d"
+#define PROGVERS               "2.2e"
 
 /*-----------------------------------------------------------------------------------------------
 /* Please set defines in sketch.h
@@ -399,6 +401,11 @@ void decoders(unsigned int duration) {
 #ifdef COMP_NC_WS
       if (rc == false) {
         rc = receiveProtocolNC_WS(changeCount);
+      }
+#endif
+#ifdef COMP_PEARLNC
+      if (rc == false) {
+        rc = receiveProtocolPEARLNC(changeCount);
       }
 #endif
 #ifdef COMP_EUROCHRON

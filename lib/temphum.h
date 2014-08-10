@@ -1,7 +1,7 @@
 /*-----------------------------------------------------------------------------------------------
 /* Devices with temperatur / humidity functionality
 -----------------------------------------------------------------------------------------------*/
-
+ 
 #ifndef _TEMP_HUM_h
   #define _TEMP_HUM_h
   #if defined(ARDUINO) && ARDUINO >= 100
@@ -22,6 +22,8 @@ bool receiveProtocolKW9010(unsigned int changeCount);
 bool receiveProtocolEuroChron(unsigned int changeCount);
 
 bool receiveProtocolNC_WS(unsigned int changeCount);
+
+bool receiveProtocolPEARLNC(unsigned int changeCount);
 
 bool receiveProtocolLIFETEC(unsigned int changeCount);
 
